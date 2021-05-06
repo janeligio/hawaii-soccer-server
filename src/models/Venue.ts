@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose';
 
 export const VenueSchema = new Schema({
-  dateCreated: Date,
-  name: Date,
+  dateCreated: { type: Date, default: Date.now() },
+  name: String,
   address: String,
   hours: String
 });

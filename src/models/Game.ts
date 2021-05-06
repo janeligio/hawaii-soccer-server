@@ -3,6 +3,7 @@ import { Schema, model } from 'mongoose';
 const GameSchema = new Schema({
   dateCreated: { type: Date, default: Date.now() },
   name: String,
+  email: String,
   venue: Schema.Types.ObjectId,
   date: Date,
   startTime: String,
