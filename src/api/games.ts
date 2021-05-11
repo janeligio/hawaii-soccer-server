@@ -58,10 +58,12 @@ router.post('/create', (req, res) => {
     });
 })
 
-router.get('/join', (req, res) => {
+router.post('/join', (req, res) => {
     const gameId = req.query.id;
+    console.log(req.body);
     const { email, name, playerCount } = req.body;
 
+    console.log(email, name, playerCount);
     Game.findById(gameId, (err, game) => {
         if(err) {
             res.status(500).json(err);
@@ -84,7 +86,7 @@ router.get('/join', (req, res) => {
                         // Update playercount of the game document
                         game.playerCount = game.playerCount + (playerCount || 1);
                         game.save();
-                        res.status(200).send("Email notification sent.");
+                        res.status(200).send(`Game organizer notified. They may contact you at ${email} for further details.`);
                     }
                 })
             });
