@@ -17,6 +17,21 @@ router.get('/', async (req, res) => {
 });
 
 /**
+ * Get a specific venue
+ */
+router.get('/:venueId', async (req, res) => {
+    const { venueId } = req.params;
+
+    try {
+        const venue = await Venue.findById(venueId);
+        console.log(venue);
+        res.status(200).send(venue);
+    } catch(err) {
+        console.error(err);
+        res.status(500).send("Error");
+    }
+})
+/**
  * Create a Venue
  */
 router.post('/create', (req, res) => {

@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 import { connect } from './mongodb';
 import games from './api/games';
 import venues from './api/venues';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const port = 8080;
 
