@@ -84,7 +84,7 @@ router.post('/join', (req, res) => {
                     } else {
                         console.log("Successfully notified organizer");
                         // Update playercount of the game document
-                        game.playerCount = game.playerCount + (playerCount || 1);
+                        game.playerCount = game.playerCount + (parseInt(playerCount) || 1);
                         game.save();
                         res.status(200).send(`Game organizer notified. They may contact you at ${email} for further details.`);
                     }
