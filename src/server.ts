@@ -1,22 +1,20 @@
-const express = require("express");
-const cors = require("cors");
+const express = require('express');
+const cors = require('cors');
 import { connect } from './mongodb';
 import games from './api/games';
 import venues from './api/venues';
 
-const app = express();
-app.use(express.json());
-app.use(cors());
+const app = express().use(express.json()).use(cors());
 
-const port = 8080;
+const PORT = 8080;
 
 // Connect to MongoDB
 connect()
     .then(() => console.log(`Connected to MongoDB`))
-    .catch((err) =>  console.error.bind(err, "MongoDB error:"));
+    .catch((err) => console.error.bind(err, 'MongoDB error:'));
 
 app.get('/', async (req, res) => {
-    res.send("Bootstrapped node typescript application.");
+    res.send('Bootstrapped node typescript application.');
 });
 
 // Routes
@@ -24,10 +22,10 @@ app.get('/', async (req, res) => {
 app.use('/games', games);
 app.use('/venues', venues);
 
-app.listen(port, err => {
-    if(err) {
+app.listen(PORT, (err) => {
+    if (err) {
         return console.error(err);
     } else {
-        console.log(`Server listening on PORT:${port}`);
+        console.log(`Server listening on PORT:${PORT}`);
     }
 });
